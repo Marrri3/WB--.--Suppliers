@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+      "target": "ES6",
+      "module": "commonjs",
+      "strict": true,
+      "esModuleInterop": true,  // Убедитесь, что эта строка действительно присутствует
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true
+  },
+  "include": ["index.ts"],
+  "exclude": ["node_modules"]
+}

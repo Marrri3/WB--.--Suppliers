@@ -1,0 +1,42 @@
+.header {
+    display: flex;
+    align-items: center;
+    padding: 0px; 
+}
+
+.logo {
+    width: 92px;
+    height: 92px;
+}
+
+.navbar {
+    margin-left: 12px;
+    margin-top: 5px;
+    font-size: 10pt;
+    max-width: 485px; /* Ширина навигационной панели */
+    max-height: 40px; /* Высота навигационной панели */
+    border-radius: 10px;
+    background: #FFFFFF14;
+}
+
+.nav-list {
+    display: flex; 
+    margin: 0px; 
+    padding: 2px; 
+}
+
+.nav-item {
+    text-decoration: none;
+    padding: 10px; 
+    color: white; 
+    border-radius: 10px; 
+    transition: background-color 0.3s ease; 
+    font-weight: bold;
+}
+
+.nav-item:hover {
+    color: black;  
+    background: #FFFFFF;/* Цвет фона при наведении */
+    border-radius: 10px;
+}
+

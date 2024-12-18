@@ -1,0 +1,173 @@
+/* Modal.css */
+
+.edit-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000B2;
+}
+
+.edit-modal-content {
+  background: var(--colors-ashy-solid-500, #2D2C32);
+  box-shadow: 0px 0px 26px 0px #00000030;
+  width: 496px;
+  border-radius: 14px;
+  padding: 32px 48px;
+  height: 660px;
+  margin: 50px 0px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.close:hover {
+  background-color: transparent;
+}
+
+.modal-title {
+  color: white;
+  margin-bottom: 0px;
+}
+
+.subtitle {
+  color: var(--Generic-grey700, #767386);
+  margin-top: 10px;
+}
+
+.hint {
+  font-size: 16px;
+  color: var(--Generic-grey700, #767386);
+}
+
+.data-container {
+  padding: 0px;
+}
+
+.edit-modal-dropdown-menu {
+  left: 0;
+  right: 0;
+  position: absolute; /* Меняется на фиксированное позиционирование */
+  background-color: white; 
+  border: 1px solid #ccc; 
+  border-radius: 10px; 
+  z-index: 1000; 
+  max-height: 150px; 
+  overflow-y: auto; 
+  width: 100%; /* Задаем полную ширину выпадающего списка */
+  top: 100%; /* Позиционирование под полем */
+}
+
+.edit-modal-dropdown-menu ul {
+  font-size: 11pt;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.edit-modal-dropdown-menu li {
+  text-align: left;
+  color: black;
+  padding: 8px 12px;
+  cursor: pointer; 
+}
+
+.edit-modal-dropdown-menu li:hover {
+  background-color: #f0f0f0; 
+}
+
+.data {
+  position: relative;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 484px;
+  height: 44px;
+  color: white;
+  background-color: var(--colors-cloudy-alpha-008, #FFFFFF14);
+  margin: 10px 0px;
+  padding: 3px 0px 3px 12px;
+  border-radius: 10px;
+}
+
+.data:hover {
+  background-color: #FFFFFF3D;
+  transition: background-color 0.3s ease;
+  border-radius: 10px;
+}
+
+.input-data {
+  background-color: transparent;
+  border: none;
+  outline: none; 
+  caret-color: white;
+  color: white;
+}
+
+.data-title {
+  color: rgba(255, 255, 255, 0.51);
+  font-size: 13px;
+  padding: 6px 0px;
+}
+
+.text-data {
+  white-space: nowrap;
+}
+
+.dropdown-icon {
+  width: 25px; 
+  height: 25px; 
+}
+
+.container-icon {
+  position: absolute; 
+  right: 10px; 
+  bottom: 10px; 
+  display: flex;
+  align-items: center; 
+}
+
+.button-container {
+  margin-top: 30px;
+}
+
+.button-save {
+  width: 99px;
+  height: 36px;
+  background-color: var(--colors-primary-solid-600, #4649E5);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  margin-right: 12px;
+}
+
+.button-save:hover {
+  background: var(--colors-primary-solid-500, #6366F1);
+}
+
+.button-cancel {
+  width: 92px;
+  height: 36px;
+  font-size: 16px;
+  color: white;
+  background-color: transparent;
+  border: none;
+  border-radius: 10px;
+}
+
+.button-cancel:hover {
+  background: var(--colors-cloudy-alpha-008, #FFFFFF14);
+}

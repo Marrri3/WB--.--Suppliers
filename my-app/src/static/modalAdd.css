@@ -1,0 +1,208 @@
+/* Modal.css */
+
+.add-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000B2;
+  z-index: 1000; /* Значение должно быть больше, чем у других элементов */
+
+}
+
+.add-modal-content {
+  background: var(--colors-ashy-solid-500, #2D2C32);
+  box-shadow: 0px 0px 26px 0px #00000030;
+  width: 496px;
+  border-radius: 14px;
+  padding: 32px 48px;
+  height: auto;
+  margin: 50px 0px; /* Задайте отступ сверху для вашего модального окна */
+  position: relative; /* Добавлено для позиционирования кнопки закрытия */
+}
+
+.close {
+  position: absolute; /* Изменено на absolute */
+  top: 10px; /* Расположите на 10px от верхнего края */
+  right: 10px; /* Расположите на 10px от правого края */
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.close:hover {
+  background-color: transparent;
+}
+
+.modal-title {
+  color: white;
+  margin-bottom: 0px; /* Отступ снизу для заголовка */
+}
+
+.subtitle {
+  color: var(--Generic-grey700, #767386);
+  margin-top: 10px; /* Отступ сверху для подзаголовка */
+}
+
+.hint{
+  font-size: 16px;
+  margin-top: -30px;
+  color: var(--Generic-grey700, #767386);
+}
+
+.data-container{
+  padding: 0px;
+}
+
+.add-modal-dropdown-menu {
+  margin-top: -10px;
+  position: absolute; /* Позволяет позиционировать выпадение относительно родителя */
+  background-color: white; /* Цвет фона выпадающего списка */
+  border: 1px solid #ccc; /* Обводка */
+  border-radius: 10px; 
+  z-index: 100; 
+  max-height: 150px; 
+  overflow-y: auto; 
+  width: 496px; 
+}
+
+.add-modal-dropdown-menu  ul {
+  font-size: 11pt;
+  list-style-type: none; /* Убираем маркеры списка */
+  padding: 0; /* Отступы внутри меню */
+  margin: 0; /* Убираем отступы у списка */
+}
+
+.add-modal-dropdown-menu li {
+  text-align: left;
+  color: black;
+  padding: 8px 12px; /* Отступы для пунктов меню */
+  cursor: pointer; /* Указатель при наведении */
+}
+
+.add-modal-dropdown-menu  li:hover {
+  border-radius: 0px;
+  background-color: #f0f0f0; /* Цвет фона при наведении на пункт */
+}
+
+.data{
+  position: relative;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 484px;
+  height: 44px;
+  color: white;
+  background-color: var(--colors-cloudy-alpha-008, #FFFFFF14);
+  margin: 10px 0px;
+  padding: 3px 0px 3px 12px;
+  border-radius: 10px;
+}
+
+.data:hover{
+  background-color: #FFFFFF3D;
+  transition: background-color 0.3s ease; /* Плавный переход цвета фона */
+  border-radius: 10px;
+}
+
+/* Стиль для календаря */
+.calendar {
+  top: 0;
+  right: 0;
+  margin-top: 40px;
+  position: absolute; /* Позволяет вычислить размещение для дочерних элементов */
+  display: flex; 
+  align-items: center;
+  padding: 5px 3px; 
+  color: black;
+  background-color: white; /* Цвет фона, согласно теме */
+  border-radius: 10px;
+  z-index: 1000;
+}
+
+/* Стиль для отображения даты */
+.calendar-data {
+  background-color: transparent; /* Прозрачный фон */
+  color: white; /* Цвет текста */
+  font-size: 16px; /* Размер шрифта */
+}
+
+.input-data{
+  background-color: transparent;
+  border: none;
+  outline: none; 
+  caret-color: white;
+  color: white;
+  font-size: 16px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.data-title{
+  color: rgba(255, 255, 255, 0.51);
+  font-size: 13px;
+  padding: 6px 0px;
+}
+
+.text-data{
+  white-space: nowrap;
+}
+
+.dropdown-icon {
+  width: 25px; 
+  height: 25px; 
+}
+
+
+.container-icon {
+  position: absolute; /* Позиционирование иконки */
+  right: 10px; /* Положение от правого края */
+  bottom: 10px; /* Положение от нижнего края */
+  display: flex;
+  align-items: center; /* Центрируем иконку */
+}
+
+.button-container{
+  margin-top: 30px;
+}
+
+.button-save{
+  width: 99px;
+  height: 36px;
+  background-color: var(--colors-primary-solid-600, #4649E5);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  margin-right: 12px;
+}
+
+.button-save:hover{
+  background: var(--colors-primary-solid-500, #6366F1);
+  border: none;
+  border-radius: 10px;
+}
+
+.button-cancel{
+  width: 92px;
+  height: 36px;
+  font-size: 16px;
+  color: white;
+  background-color: transparent;
+  border: none;
+  border-radius: 10px;
+}
+
+.button-cancel:hover{
+  background: var(--colors-cloudy-alpha-008, #FFFFFF14);
+  border-radius: 10px;
+}

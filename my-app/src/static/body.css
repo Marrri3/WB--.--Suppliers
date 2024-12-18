@@ -1,0 +1,104 @@
+.supply-table {
+    margin-left: 104px; /* Отступ слева */
+    margin-right: 48px; /* Отступ справа */
+    width: calc(100% - 152px); /* Учитываем отступы */
+    border-collapse: separate; /* Позволяет использовать отступы между строками */
+    border-spacing: 0 10px; /* Расстояние между строками */
+}
+
+.head-row {
+    display: table-row;
+    text-align: left; /* Выравнивание текста в заголовке по левому краю */
+    background-color: transparent; /* Цвет фона заголовка */
+    color: white; /* Цвет текста заголовка */
+}
+
+.table-row:hover{
+    background-color: #FFFFFF14;
+}
+
+.table-row {
+    display: table-row;
+    text-align: left; /* Выравнивание текста в строках по левому краю */
+    background-color: #FFFFFF14; /* Цвет фона строки */
+    color: white;
+}
+
+.table-row:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Цвет фона при наведении */
+    transition: background-color 0.3s ease; /* Плавный переход цвета */
+}
+
+
+.table-cell {
+    display: table-cell;
+    padding: 10px; /* Отступы внутри ячеек */
+    border: none; /* Убираем границы между ячейками */
+    background-color: #FFFFFF14; /* Цвет фона ячеек */
+    padding: 10px 5px;
+}
+
+.warehouse-address {
+    font-size: 12px; /* Меньший размер шрифта для адреса */
+    color:  #ffffff97;
+    padding-top: 10px;
+}
+
+
+.cell-status{
+    text-align: left;
+    border-radius: 5px;
+    padding: 0px 5px;
+}
+
+.in-transit{
+    width: 50px;
+    background-color:  #14532B;
+    color: #85EF89;
+}
+
+.delayed{
+    width: 115px;
+    background-color:  #7C3D12;
+    color: #FDB172;
+}
+
+.button-icon{
+    background-color: transparent;
+    border: none;
+}
+
+.button-icon:hover{
+    border-radius: 10px;
+    background-color: #FFFFFF14;
+}
+
+.dropdown-menu {
+    position: absolute; /* Позволяет позиционировать меню относительно кнопки */
+    bottom: 30px; /* Расстояние от кнопки до меню */
+    right: 20px; /* Выравнивание по правому краю кнопки */
+    background-color: white; /* Цвет фона */
+    box-shadow: none;
+    z-index: 100; /* Убедитесь, что меню отображается поверх других элементов */
+    width:170px;
+    border-radius: 10px;
+}
+
+.dropdown-menu ul {
+    font-size: 11pt;
+    list-style-type: none; /* Убираем маркеры списка */
+    padding: 0; /* Отступы внутри меню */
+    margin: 0; /* Убираем отступы у списка */
+}
+
+.dropdown-menu li {
+    text-align: left;
+    color: black;
+    padding: 8px 12px; /* Отступы для пунктов меню */
+    cursor: pointer; /* Указатель при наведении */
+}
+
+.dropdown-menu li:hover {
+    border-radius: 10px;
+    background-color: #f0f0f0; /* Цвет фона при наведении на пункт */
+}
