@@ -1,22 +1,23 @@
 .header {
     display: flex;
     align-items: center;
-    padding: 0px; 
+    padding: 0px;
+    justify-content: flex-start; /* Элементы выравниваются слева */
 }
 
 .logo {
     width: 92px;
     height: 92px;
+    margin-right: 12px; /* Отступ между логотипом и навбаром */
 }
 
 .navbar {
     margin-left: 12px;
     margin-top: 5px;
     font-size: 10pt;
-    max-width: 485px; /* Ширина навигационной панели */
-    max-height: 40px; /* Высота навигационной панели */
+    background-color: #FFFFFF14;
     border-radius: 10px;
-    background: #FFFFFF14;
+    display: flex; /* Используем flex для расположения навигационных элементов в ряд */
 }
 
 .nav-list {
@@ -36,7 +37,63 @@
 
 .nav-item:hover {
     color: black;  
-    background: #FFFFFF;/* Цвет фона при наведении */
-    border-radius: 10px;
+    background: #FFFFFF; /* Цвет фона при наведении */
 }
 
+.icon-buttons {
+    display: none; /* Скрываем иконки в полноэкранном режиме */
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        display: none; /* Скрыть навигацию по умолчанию на маленьких экранах */
+    }
+
+    .hamburger {
+        display: block; /* Показать гамбургер-меню */
+        cursor: pointer;
+        font-size: 24px; /* Установите нужный размер */
+        position: absolute; /* Устанавливаем абсолютное позиционирование */
+        border: none;
+        background-color: transparent;
+    }
+
+    .header {
+        flex-direction: column; /* Изменить порядок на вертикальный */
+        align-items: center; /* Центрируем элементы по горизонтали */
+    }
+
+    .logo {
+        margin: 0; /* Отступ перед логотипом */
+    }
+
+    .icon-buttons {
+        display: flex; /* Скрываем иконки в полноэкранном режиме */
+    }
+
+    .right-icon-buttons {
+        display: flex; /* Показываем иконки в мобильном режиме */
+        justify-content: flex-end; /* Иконки выравниваются вправо */
+        position: absolute; /* Позиционируем иконки абсолютно */
+        right: 16px; /* Расстояние от правого края */
+        top: 32px; /* Расстояние от верхнего края */
+        gap: 10px; /* Расстояние между иконками */
+    }
+
+    .left-icon-buttons {
+        display: flex; /* Показываем иконки в мобильном режиме */
+        position: absolute; /* Позиционируем иконки абсолютно */
+        left: 20px; /* Расстояние от левого края */
+        top: 32px; /* Расстояние от верхнего края */
+    }
+
+    .right-icon{
+        border: none;
+        background-color: transparent;
+    }
+
+    .nav-list{
+        background-color: #FFFFFF;
+    }
+    
+}

@@ -102,3 +102,68 @@
     border-radius: 10px;
     background-color: #f0f0f0; /* Цвет фона при наведении на пункт */
 }
+
+.hidden-button-icon{
+    display: none;
+}
+
+
+
+@media (max-width: 600px) {
+    .table-container {
+        margin: 0; /* Центрируем контейнер */
+        padding: 0 20px; /* Добавляем отступы слева и справа */
+    }
+
+    .supply-table {
+        margin: 0;
+        width: 100%; /* Таблица занимает всю ширину контейнера */
+        height: auto; /* Автоматическая высота для роста таблицы */
+        border-collapse: separate; /* Изменяем на "separate" для использования border-spacing */
+        border-spacing: 0 10px; /* Расстояние между строками (вертикальное) */
+    }
+
+    .supply-table .table-cell,
+    .supply-table .head-row th {
+        display: none; /* Скрываем все ячейки, кроме нужных */
+    }
+
+    .supply-table .table-cell:nth-child(1), /* Номер */
+    .supply-table .table-cell:nth-child(2), /* Дата Поставки */
+    .supply-table .table-cell:nth-child(7),
+    .supply-table .table-cell:nth-child(8) { /* Статус */
+        display: table-cell; /* Показываем только нужные столбцы */
+        padding: 15px; /* Увеличенные внутренние отступы ячеек */
+        font-size: 1.2em; /* Увеличенный размер шрифта ячеек */
+    }
+
+    /* Flexbox стили для контейнера поставки */
+    .hidden-button-icon {
+        display: block;
+        background-color: transparent;
+        border: none;
+        border-radius: 10px;
+    }
+
+    .hidden-button-icon:hover {
+        background-color: #FFFFFF14;
+        transition: background-color 0.3s ease;
+        border-radius: 10px;
+    }
+
+    .button-icon {
+        display: none;
+    }
+
+    .in-transit{
+        width: 58px;
+        background-color:  #14532B;
+        color: #85EF89;
+    }
+    
+    .delayed{
+        width: 134px;
+        background-color:  #7C3D12;
+        color: #FDB172;
+    }
+}

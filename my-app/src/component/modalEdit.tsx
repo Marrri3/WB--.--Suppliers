@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../static/modalEdit.css';
+import { editOrder } from '../api/requests/OrderdRequests';
 
 const filterCity = [
   { id: 1, label: 'Москва' },
@@ -42,6 +43,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, initialData }) => {
   const [selectedDelivery, setSelectedDelivery] = useState<string>('');
   const [selectedWarehouse, setSelectedWarehouse] = useState<string>('');
   const [selectedStatus, setSelectedStatus] = useState<string>('');
+  const [quantity, setQuantity] = useState(initialData.quantity || 0);
 
   const [visibleMenu, setVisibleMenu] = useState<number | null>(null);
 
@@ -67,6 +69,27 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, initialData }) => {
 
   const toggleMenu = (menuId: number) => {
     setVisibleMenu(visibleMenu === menuId ? null : menuId);
+  };
+
+  const handleSave = async () => {
+    const updatedOrder = {
+      quantity: typeof quantity === 'number' ? quantity : initialData.quantity,
+      city: selectedCity || initialData.city, 
+      deliveryType: selectedDelivery || initialData.deliveryType, 
+      warehouse: { 
+        name: selectedWarehouse || initialData.warehouse.name, 
+        address: selectedWarehouse ? null : initialData.warehouse.address,
+      }, 
+      status: selectedStatus || initialData.status, 
+    };
+
+    try {
+        await editOrder(initialData.id, updatedOrder); // Используем id из initialData
+        console.log('Заказ обновлён');
+        onClose(); // Закрыть модальное окно
+    } catch (error) {
+        console.error('Ошибка при обновлении заказа:', error);
+    }
   };
 
   if (!isOpen) return null;
@@ -125,7 +148,18 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, initialData }) => {
   
           <div className='data-title'>Количество</div>
           <div className='data'>
-            {initialData && <input className='input-data' placeholder={initialData.quantity}></input>}
+            {initialData && 
+              <input 
+                className='input-data'
+                type="number" 
+                value={quantity} // Убедитесь, что quantity - это число
+                onChange={(e) => {
+                const newValue = e.target.value;
+                setQuantity(newValue ? parseFloat(newValue) : 0); // Преобразуем строку в число, если пусто, ставим 0
+              }} 
+                placeholder={initialData.quantity}>
+            </input>}
+
             <div className='container-icon'>
               <div className='hint'>шт.</div> 
             </div>
@@ -171,7 +205,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, initialData }) => {
   
         </div>
         <div className='button-container'>
-          <button className='button-save'>Сохранить</button>
+          <button className='button-save' onClick={handleSave}>Сохранить</button>
           <button className='button-cancel' onClick={onClose}>Отменить</button>
         </div>
       </div>

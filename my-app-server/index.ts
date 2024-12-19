@@ -30,17 +30,38 @@ let orders: Order[] = [
     { id: 984153, deliveryDate: '26.06.2024', city: 'Псков', quantity: 748, deliveryType: 'Короб', warehouse: { name: 'Склад', address: 'ул. Индустриальная, д. 9/1' }, status: 'Задерживается' },
 ];
 
-// Endpoint для получения всех заказов
+// получение всех заказов
 app.get('/api/orders', (req: Request, res: Response) => {
     res.json(orders);
 });
 
+// добавление заказов
 app.post('/api/orders', (req: Request, res: Response) => {
     const newOrder: Order = req.body; 
     orders.push(newOrder); // Добавляем новый заказ в массив
     res.status(201).json({ success: true, data: newOrder }); // Возвращаем созданный заказ
 });
 
+// удаление заказов
+app.delete('/api/orders', (req: Request, res: Response) => {
+    const { ids }: { ids: number[] } = req.body; // Ожидаем массив id в теле запроса
+    orders = orders.filter(order => !ids.includes(order.id)); // Удаляем заказы с указанными id
+    res.status(204).send(); // Возвращаем статус 204 No Content
+});
+
+// обновление заказа
+app.patch('/api/orders/:id', (req: Request, res: Response) => {
+    const updatedData: Partial<Order> = req.body; // Получаем обновленные данные из тела запроса
+    const id = parseInt(req.params.id); // Получаем id из параметров URL
+    
+    const orderIndex = orders.findIndex(order => order.id === id); // Находим индекс заказа
+    if (orderIndex !== -1) {
+        orders[orderIndex] = { ...orders[orderIndex], ...updatedData }; // Обновляем данные заказа
+        res.json({ success: true, data: orders[orderIndex] }); // Возвращаем обновленный заказ
+    } else {
+        res.status(404).json({ success: false, message: 'Заказ не найден' }); // Если заказ не найден
+    }
+});
 
 // Запуск сервера
 app.listen(PORT, () => {

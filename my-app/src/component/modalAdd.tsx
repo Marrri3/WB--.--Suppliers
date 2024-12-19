@@ -104,10 +104,10 @@ const ModalAdd: React.FC<ModalProps> = ({ isOpen, onClose, addOrder }) => {
   }, []);
 
   const handleSave = async () => {
-    console.log('кнопка нажата')
     const newOrder = {
       id: parseInt(generatedRandomNumber.slice(1), 10),
       deliveryDate: selectedDate ? selectedDate.toLocaleDateString() : '',
+      quantity: quantity,
       city: selectedCity,
       deliveryType: selectedDelivery,
       warehouse: { name: selectedWarehouse, address: '' },

@@ -136,3 +136,31 @@
 .catalog-dropdown-menu li:hover {
     background-color: #2d2c3241; /* Цвет фона при наведении на пункт */
 }
+
+@media (max-width: 600px) {
+
+    .catalog {
+        margin: 0;
+    }
+
+    .title {
+        display: flex; /* Показываем иконки в мобильном режиме */
+        margin-left: 20px; /* Добавляем отступ слева 20px */
+    }
+
+    .container-button {
+        display: flex; /* Показываем иконки в мобильном режиме */
+        justify-content: flex-end; /* Иконки выравниваются вправо */
+        position: absolute; /* Позиционируем иконки абсолютно */
+        margin-right: 16px; /* Расстояние от правого края */
+        margin-top: 0px; /* Расстояние от верхнего края */
+    }
+
+    .catalog-title{
+        display: none;
+    }
+
+    .filter-container{
+        display: none;
+    }
+}

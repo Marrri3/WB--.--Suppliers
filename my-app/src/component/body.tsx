@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchOrders } from '../api/requests/OrderdRequests'; // Убедитесь, что здесь правильный путь к вашему файлу
+import { fetchOrders, deleteOrders } from '../api/requests/OrderdRequests'; // Убедитесь, что здесь правильный путь к вашему файлу
 import '../static/body.css';
 import Modal from './modalEdit';
 
@@ -47,6 +47,17 @@ const SupplyTable: React.FC = () => {
         setVisibleMenuId(null);
     };
 
+    const handleCancelDelivery = async (orderId: number) => {
+        try {
+            await deleteOrders([orderId]); // Передаем orderId в виде массива
+            setOrders(orders.filter(order => order.id !== orderId)); // Обновляем состояние, удаляя заказ
+            alert('Заказ успешно отменен'); // Уведомление об успешном удалении
+        } catch (error) {
+            console.error('Ошибка при отмене заказа:', error);
+            alert('Не удалось отменить заказ'); // Уведомление об ошибке
+        }
+    };
+
     const closeModal = () => {
         setModalOpen(false); // Закрываем модальное окно
         setCurrentOrder(null); // Сбрасываем выбранный заказ
@@ -87,11 +98,15 @@ const SupplyTable: React.FC = () => {
                                     <button className='button-icon' onClick={() => handleClick(order.id)}>
                                         <img src='./icon-kebab.png' alt="Actions" />
                                     </button>
+                                    <button className='hidden-button-icon' onClick={() => handleClick(order.id)}>
+                                        <img src='./icon-pencil.png' alt="Actions" />
+                                    </button>
+                                    
                                     {visibleMenuId === order.id && (
                                         <div className='dropdown-menu'>
                                             <ul>
                                                 <li onClick={() => handleEditClick(order)}>Редактировать</li>
-                                                <li>Отменить поставку</li>
+                                                <li onClick={() => handleCancelDelivery(order.id)}>Отменить поставку</li>
                                             </ul>
                                         </div>
                                     )}
@@ -101,13 +116,14 @@ const SupplyTable: React.FC = () => {
                     ))}
                 </tbody>
             </table>
-            {isModalOpen && currentOrder && ( 
+            {isModalOpen && 
+            currentOrder && ( 
                 <Modal 
                     isOpen={isModalOpen} 
                     onClose={closeModal}
                     initialData={currentOrder} 
                 />
-            )}
+             )}
         </div>
     );
 };
