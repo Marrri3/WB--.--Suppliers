@@ -153,4 +153,17 @@ router.delete('/shipments/:id', Middleware, async (req: Request, res: Response, 
   }
 });
 
+router.get('/warehouses', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    //получение складов
+    const listWarehouse = await pool.query(
+      `SELECT name, address from warehouse`,
+    );
+    res.json(listWarehouse.rows);
+  } catch (err) {
+    console.error('Error fetching shipment:', err);
+    res.status(500).json({ error: 'Failed to fetch shipment' });
+  }
+});
+
 export default router;
