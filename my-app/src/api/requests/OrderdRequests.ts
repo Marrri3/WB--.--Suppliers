@@ -1,85 +1,72 @@
-// src/api/OrderRequests.ts
 
-import ORDER_ENDPOINT from '../endpoints/OrderEndpoints';
+import { Shipment } from '../../utils/types';
+import { ENDPOINTS } from '../endpoints/OrderEndpoints';
 
-// Функция для получения всех заказов
-export const fetchOrders = async () => {
-    try {
-        const response = await fetch(ORDER_ENDPOINT);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching orders:', error);
-        throw error;
-    }
+export const fetchOrders = async (): Promise<Shipment[]> => {
+  const response = await fetch(ENDPOINTS.shipments.list, {
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+  });
+  if (!response.ok) throw new Error('Network response was not ok');
+  return await response.json();
 };
 
-export const addOrder = async (newOrder: { id: number;
-city: string; quantity: number; deliveryType: string;
-warehouse: { name: string }; status: string }) => {
-    try {
-        const response = await fetch(ORDER_ENDPOINT, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newOrder),
-        });
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error adding order:', error);
-        throw error;
-    }
+export const fetchOrderById = async (id: number): Promise<Shipment> => {
+  const response = await fetch(ENDPOINTS.shipments.detail(id), {
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+  });
+  if (!response.ok) throw new Error('Shipment not found');
+  return await response.json();
 };
 
-// Функция для удаления заказа
-export const deleteOrders = async (ids: number[]): Promise<void> => {
-    console.log('Отправка запроса на удаление заказов с ID:', ids);
-    const response = await fetch(ORDER_ENDPOINT, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ids }), // Отправляем массив id в теле запроса
-    });
-    if (!response.ok) {
-        throw new Error(`Ошибка при удалении заказов: ${response.status} ${response.statusText}`);
-    }
+export const createOrder = async (orderData: any): Promise<any> => {
+  const response = await fetch(ENDPOINTS.shipments.list, {
+      method: 'POST',
+      headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          title: orderData.title,
+          status: orderData.status,
+          city: orderData.city,
+          delivery_type: orderData.deliveryType,
+          quantity: orderData.quantity,
+          delivery_date: orderData.deliveryDate,
+          ship_date: orderData.shipDate,
+          warehouse_id: orderData.warehouseId,
+          created_by: orderData.createdBy,
+      }),
+  });
+  if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Failed to create shipment: ${errorText}`);
+  }
+  return response.json();
+}
+
+export const updateOrder = async (id: number, order: Partial<Shipment>): Promise<Shipment> => {
+  console.log('Updating order:', { id, order }); // Отладка
+  const response = await fetch(ENDPOINTS.shipments.detail(id), {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+    body: JSON.stringify(order),
+  });
+  if (!response.ok) {
+    const errorText = await response.text();
+    console.error('Server response error:', response.status, errorText);
+    throw new Error(`Failed to update order: ${response.status} - ${errorText}`);
+  }
+  return await response.json();
 };
 
-
-export const editOrder = async (orderId: number, updatedFields: Partial<{
-    city: string;
-    quantity: number;
-    warehouse: { name: string, address: string };
-    status: string;
-}>): Promise<void> => {
-    try {
-        const response = await fetch(`${ORDER_ENDPOINT}/${orderId}`, { // Добавляем orderId в URL
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(updatedFields),
-        });
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        const data = await response.json();
-        console.log('Заказ обновлен:', data);
-    } catch (error) {
-        console.error('Ошибка при редактировании заказа:', error);
-        throw error;
-    }
+export const deleteOrders = async (orderIds: number[]): Promise<void> => {
+  const response = await fetch(ENDPOINTS.shipments.detail(orderIds[0]), {
+    method: 'DELETE',
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+  });
+  if (!response.ok) throw new Error('Failed to delete order');
+  await response.json();
 };

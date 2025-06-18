@@ -32,10 +32,9 @@
 
 .table-cell {
     display: table-cell;
-    padding: 10px; /* Отступы внутри ячеек */
+    padding: 10px 0px 10px 13px; /* Отступы внутри ячеек */
     border: none; /* Убираем границы между ячейками */
     background-color: #FFFFFF14; /* Цвет фона ячеек */
-    padding: 10px 5px;
 }
 
 .warehouse-address {
@@ -107,7 +106,13 @@
     display: none;
 }
 
-
+.error-title{
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 24px;
+    padding: 10px;
+}
 
 @media (max-width: 600px) {
     .table-container {

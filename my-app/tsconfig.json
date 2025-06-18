@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react-jsx" // или "react" если используете старую версию react
+    "jsx": "react-jsx" 
   },
   "include": [
     "src"

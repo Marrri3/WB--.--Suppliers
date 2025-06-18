@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
-      "target": "ES6",
-      "module": "commonjs",
-      "strict": true,
-      "esModuleInterop": true,  // Убедитесь, что эта строка действительно присутствует
-      "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true
+    "target": "ES6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "rootDir": "./src", //откуда берутся файлы
+    "outDir": "./dist", //куда они компилируются
+    "typeRoots": ["./node_modules/@types"]
   },
-  "include": ["index.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*", "@types"], //берет все файлы из src
+  "exclude": ["node_modules", "dist"]
 }

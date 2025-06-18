@@ -2,98 +2,171 @@
     display: flex;
     align-items: center;
     padding: 0px;
-    justify-content: flex-start; /* Элементы выравниваются слева */
-}
-
-.logo {
+    justify-content: flex-start;
+  }
+  
+  .logo {
     width: 92px;
     height: 92px;
-    margin-right: 12px; /* Отступ между логотипом и навбаром */
-}
-
-.navbar {
+    margin-right: 12px;
+  }
+  
+  .navbar {
     margin-left: 12px;
     margin-top: 5px;
     font-size: 10pt;
     background-color: #FFFFFF14;
     border-radius: 10px;
-    display: flex; /* Используем flex для расположения навигационных элементов в ряд */
-}
-
-.nav-list {
-    display: flex; 
-    margin: 0px; 
-    padding: 2px; 
-}
-
-.nav-item {
+    display: flex;
+  }
+  
+  .nav-list {
+    display: flex;
+    margin: 0px;
+    padding: 2px;
+  }
+  
+  .nav-item {
     text-decoration: none;
-    padding: 10px; 
-    color: white; 
-    border-radius: 10px; 
-    transition: background-color 0.3s ease; 
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
     font-weight: bold;
-}
-
-.nav-item:hover {
-    color: black;  
-    background: #FFFFFF; /* Цвет фона при наведении */
-}
-
-.icon-buttons {
-    display: none; /* Скрываем иконки в полноэкранном режиме */
-}
-
-@media (max-width: 600px) {
+  }
+  
+  .nav-item:hover {
+    color: black;
+    background: #FFFFFF;
+  }
+  
+  .nav-item-user {
+    background-color: rgba(255, 255, 255, 0);
+    text-decoration: none;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+  }
+  
+  .container-button-user {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-left: 5px;
+    transition: background-color 0.3s ease;
+    border-radius: 14px;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+  }
+  
+  .container-button-user:hover .nav-item-user {
+    color: black;
+    background: #FFFFFF;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .icon-buttons {
+    display: none;
+  }
+  
+  .entry-dropdown-title {
+    position: relative;
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-left: 10px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .entry-dropdown-title:hover {
+    color: black;
+    background: #FFFFFF;
+  }
+  
+  .head-dropdown-menu {
+    position: absolute;
+    z-index: 1000;
+    background-color: white;
+    border-radius: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    min-width: 150px;
+    top: 100%;
+    left: 0;
+  }
+  
+  .head-dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .head-dropdown-menu li {
+    padding: 10px 15px;
+    cursor: pointer;
+    color: black;
+    transition: background-color 0.2s;
+  }
+  
+  .head-dropdown-menu li:hover {
+    background-color: #2d2c3241;
+  }
+  
+  @media (max-width: 600px) {
     .navbar {
-        display: none; /* Скрыть навигацию по умолчанию на маленьких экранах */
+      display: none;
     }
-
+  
     .hamburger {
-        display: block; /* Показать гамбургер-меню */
-        cursor: pointer;
-        font-size: 24px; /* Установите нужный размер */
-        position: absolute; /* Устанавливаем абсолютное позиционирование */
-        border: none;
-        background-color: transparent;
+      display: block;
+      cursor: pointer;
+      font-size: 24px;
+      position: absolute;
+      border: none;
+      background-color: transparent;
     }
-
+  
     .header {
-        flex-direction: column; /* Изменить порядок на вертикальный */
-        align-items: center; /* Центрируем элементы по горизонтали */
+      flex-direction: column;
+      align-items: center;
     }
-
+  
     .logo {
-        margin: 0; /* Отступ перед логотипом */
+      margin: 0;
     }
-
+  
     .icon-buttons {
-        display: flex; /* Скрываем иконки в полноэкранном режиме */
+      display: flex;
     }
-
+  
     .right-icon-buttons {
-        display: flex; /* Показываем иконки в мобильном режиме */
-        justify-content: flex-end; /* Иконки выравниваются вправо */
-        position: absolute; /* Позиционируем иконки абсолютно */
-        right: 16px; /* Расстояние от правого края */
-        top: 32px; /* Расстояние от верхнего края */
-        gap: 10px; /* Расстояние между иконками */
+      display: flex;
+      justify-content: flex-end;
+      position: absolute;
+      right: 16px;
+      top: 32px;
+      gap: 10px;
     }
-
+  
     .left-icon-buttons {
-        display: flex; /* Показываем иконки в мобильном режиме */
-        position: absolute; /* Позиционируем иконки абсолютно */
-        left: 20px; /* Расстояние от левого края */
-        top: 32px; /* Расстояние от верхнего края */
+      display: flex;
+      position: absolute;
+      left: 20px;
+      top: 32px;
     }
-
-    .right-icon{
-        border: none;
-        background-color: transparent;
+  
+    .right-icon {
+      border: none;
+      background-color: transparent;
     }
-
-    .nav-list{
-        background-color: #FFFFFF;
+  
+    .nav-list {
+      background-color: #FFFFFF;
     }
-    
-}
+  }

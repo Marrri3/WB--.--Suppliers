@@ -137,6 +137,11 @@
     background-color: #2d2c3241; /* Цвет фона при наведении на пункт */
 }
 
+.right-catalog {
+    display: flex;
+    align-items: center;
+}
+
 @media (max-width: 600px) {
 
     .catalog {
