@@ -13,18 +13,59 @@ const ModalReg: React.FC<ModalProps> = ({ onClose, onRegisterSuccess }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
 
-  //проверка полей и регистрация пользователя
+  // Функция проверки пароля
+  const validatePassword = (pass: string) => {
+    const forbiddenChars = /[*&{}|_+]/;
+    if (pass.length < 4 || pass.length > 16) {
+      alert('Длина пароля должна быть от 4 до 16 символов');
+      return false;
+    }
+    if (forbiddenChars.test(pass)) {
+      alert('Пароль содержит запрещенные символы: *, &, {, }, |, +');
+      return false;
+    }
+    if (!/[A-Z]/.test(pass)) {
+      alert('Пароль должен содержать хотя бы одну заглавную букву');
+      return false;
+    }
+    if (!/[a-z]/.test(pass)) {
+      alert('Пароль должен содержать хотя бы одну строчную букву');
+      return false;
+    }
+    if (!/\d/.test(pass)) {
+      alert('Пароль должен содержать хотя бы одну цифру');
+      return false;
+    }
+    return true;
+  };
+
+  // Функция проверки email
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Введите корректный email адрес');
+      return false;
+    }
+    return true;
+  };
+
+  // Проверка полей и регистрация пользователя
   const handleRegistrClick = async () => {
-    if (!name || !email || !password || !confirmPassword ) {
-      alert('Все поля обязательны' );
+    if (!name || !email || !password || !confirmPassword) {
+      alert('Все поля обязательны');
       return;
     }
     if (password !== confirmPassword) {
       alert('Пароли не совпадают');
       return;
     }
+    if (!validatePassword(password)) {
+      return;
+    }
+    if (!validateEmail(email)) {
+      return;
+    }
     try {
-      //перада данных рагистрации в родительский компонент
       onRegisterSuccess(name, email, password);
       setError(null);
       onClose();
@@ -85,7 +126,7 @@ const ModalReg: React.FC<ModalProps> = ({ onClose, onRegisterSuccess }) => {
           {error && <div className="error-message">{error}</div>}
         </div>
         <div className="button-container">
-          <button className="button-save" onClick={handleRegistrClick}>Зарегистрироваться</button>
+          <button className="button-save-reg" onClick={handleRegistrClick}>Зарегистрироваться</button>
         </div>
       </div>
     </div>

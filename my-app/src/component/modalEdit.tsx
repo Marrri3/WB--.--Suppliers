@@ -44,6 +44,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, initialData, onSave }) =
 
   // Проверка на правильное заполнение полей 
   const validateForm = (): string | null => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const selectedDate = formData.delivery_date ? new Date(formData.delivery_date) : null;
+    if (selectedDate && selectedDate < today) return 'Нельзя выбирать прошедшую дату!';
     if (formData.quantity! <= 0) return 'Количество должно быть положительным числом';
     if (formData.delivery_date && !/^\d{4}-\d{2}-\d{2}$/.test(formData.delivery_date))
       return 'Неверный формат даты (ожидается YYYY-MM-DD)';

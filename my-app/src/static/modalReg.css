@@ -117,8 +117,8 @@
     margin-top: 30px;
   }
   
-  .button-save{
-    width: 99px;
+  .button-save-reg{
+    width: 180px;
     height: 36px;
     background-color: var(--colors-primary-solid-600, #4649E5);
     color: white;
@@ -128,7 +128,7 @@
     margin-right: 12px;
   }
   
-  .button-save:hover{
+  .button-save-reg:hover{
     background: var(--colors-primary-solid-500, #6366F1);
     border: none;
     border-radius: 10px;

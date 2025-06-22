@@ -63,6 +63,7 @@ const ModalAuth: React.FC<ModalProps> = ({ isOpen, onClose, onLoginSuccess, onRe
             <div className="data-user">
               <input
                 className="input-data-user"
+                placeholder='Введите пароль'
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

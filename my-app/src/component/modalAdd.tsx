@@ -57,12 +57,17 @@ const ModalAdd: React.FC<ModalProps> = ({ isOpen, onClose, addOrder }) => {
 
     //проверка полей и добавление поставки
     const handleSave = async () => {
+        const today = new Date();
         if (!quantity || !selectedDate) {
             alert('Заполните обязательные поля: количество и дату доставки!');
             return;
         }
         if (isNaN(Number(quantity)) || Number(quantity) <= 0) {
             alert('Количество должно быть положительным числом!');
+            return;
+        }
+        if (selectedDate && selectedDate < today) {
+            alert('Нельзя выбирать прошедшую дату!');
             return;
         }
         const warehouse = filterWarehouse.find(w => w.label === (selectedWarehouse || 'Склад'));
@@ -103,7 +108,7 @@ const ModalAdd: React.FC<ModalProps> = ({ isOpen, onClose, addOrder }) => {
         <div className="data-wrapper">
             <div className="data-title">{title}</div>
             <div className="data" onClick={() => toggleMenu(menuId)}>
-                <div className="text-data">{value || title === 'Город' ? 'Москва' : title === 'Тип поставки' ? 'Короб' : title === 'Склад' ? 'Склад' : 'В пути'}</div>
+                <div className="text-data">{value || (title === 'Город' ? 'Москва' : title === 'Тип поставки' ? 'Короб' : title === 'Склад' ? 'Склад' : 'В пути')}</div>
                 <div className="container-icon">
                     <img src="./icon-dropdown.png" alt="dropdown" className="dropdown-icon" />
                 </div>
